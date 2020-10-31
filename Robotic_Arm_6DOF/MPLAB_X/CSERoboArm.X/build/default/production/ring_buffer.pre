@@ -1,0 +1,335 @@
+
+# 1 "ring_buffer.c"
+
+# 13 "F:\Installed Programs\MCUs\Microchip\xc8\include\stdint.h"
+typedef signed char int8_t;
+
+# 20
+typedef signed int int16_t;
+
+# 28
+typedef signed short long int int24_t;
+
+# 36
+typedef signed long int int32_t;
+
+# 43
+typedef unsigned char uint8_t;
+
+# 49
+typedef unsigned int uint16_t;
+
+# 56
+typedef unsigned short long int uint24_t;
+
+# 63
+typedef unsigned long int uint32_t;
+
+# 71
+typedef signed char int_least8_t;
+
+# 78
+typedef signed int int_least16_t;
+
+# 90
+typedef signed short long int int_least24_t;
+
+# 98
+typedef signed long int int_least32_t;
+
+# 105
+typedef unsigned char uint_least8_t;
+
+# 111
+typedef unsigned int uint_least16_t;
+
+# 121
+typedef unsigned short long int uint_least24_t;
+
+# 128
+typedef unsigned long int uint_least32_t;
+
+# 137
+typedef signed char int_fast8_t;
+
+# 144
+typedef signed int int_fast16_t;
+
+# 156
+typedef signed short long int int_fast24_t;
+
+# 164
+typedef signed long int int_fast32_t;
+
+# 171
+typedef unsigned char uint_fast8_t;
+
+# 177
+typedef unsigned int uint_fast16_t;
+
+# 187
+typedef unsigned short long int uint_fast24_t;
+
+# 194
+typedef unsigned long int uint_fast32_t;
+
+# 200
+typedef int32_t intmax_t;
+
+
+
+
+typedef uint32_t uintmax_t;
+
+
+
+
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+
+# 4 "F:\Installed Programs\MCUs\Microchip\xc8\include\__size_t.h"
+typedef unsigned size_t;
+
+# 6 "F:\Installed Programs\MCUs\Microchip\xc8\include\stddef.h"
+typedef int ptrdiff_t;
+
+# 48 "ring_buffer.h"
+typedef unsigned int rbd_t;
+
+
+typedef struct {
+size_t s_elem;
+size_t n_elem;
+void *buffer;
+} rb_attr_t;
+
+# 67
+int ring_buffer_init(rbd_t *rbd, rb_attr_t *attr);
+
+# 75
+int ring_buffer_put(rbd_t rbd, const void *data);
+
+# 83
+int ring_buffer_get(rbd_t rbd, void *data);
+
+# 91
+int ring_buffer_peek(rbd_t rbd, void *data);
+
+int ring_buffer_dequeue(rbd_t rbd);
+
+int ring_buffer_put_char(rbd_t rbd ,const unsigned char character);
+
+# 14 "F:\Installed Programs\MCUs\Microchip\xc8\include\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+# 34
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
+# 7 "F:\Installed Programs\MCUs\Microchip\xc8\include\stdarg.h"
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+
+# 43 "F:\Installed Programs\MCUs\Microchip\xc8\include\stdio.h"
+struct __prbuf
+{
+char * ptr;
+void (* func)(char);
+};
+
+# 29 "F:\Installed Programs\MCUs\Microchip\xc8\include\errno.h"
+extern int errno;
+
+# 12 "F:\Installed Programs\MCUs\Microchip\xc8\include\conio.h"
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+# 23
+extern char * cgets(char *);
+extern void cputs(const char *);
+
+# 88 "F:\Installed Programs\MCUs\Microchip\xc8\include\stdio.h"
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+
+
+# 180
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+
+# 39 "ring_buffer.c"
+struct ring_buffer
+{
+size_t s_elem;
+size_t n_elem;
+uint8_t *buf;
+volatile size_t head;
+volatile size_t tail;
+};
+
+static struct ring_buffer _rb[1];
+
+static int _ring_buffer_full(struct ring_buffer *rb);
+static int _ring_buffer_empty(struct ring_buffer *rb);
+
+# 63
+int ring_buffer_init(rbd_t *rbd, rb_attr_t *attr)
+{
+static int idx = 0;
+int err = -1;
+
+if ((idx < 1) && (rbd != (0)) && (attr != (0))) {
+if ((attr->buffer != (0)) && (attr->s_elem > 0)) {
+
+if (((attr->n_elem - 1) & attr->n_elem) == 0) {
+
+_rb[idx].head = 0;
+_rb[idx].tail = 0;
+_rb[idx].buf = attr->buffer;
+_rb[idx].s_elem = attr->s_elem;
+_rb[idx].n_elem = attr->n_elem;
+
+*rbd = idx++;
+err= 0;
+}
+}
+}
+
+return err;
+}
+
+# 94
+int ring_buffer_put(rbd_t rbd, const void *data)
+{
+int err = 0;
+
+if ((rbd < 1) && (_ring_buffer_full(&_rb[rbd]) == 0)) {
+const size_t offset = (_rb[rbd].head & (_rb[rbd].n_elem - 1)) * _rb[rbd].s_elem;
+memcpy(&(_rb[rbd].buf[offset]), data, _rb[rbd].s_elem);
+_rb[rbd].head++;
+} else {
+err = -1;
+}
+
+return err;
+}
+
+# 115
+int ring_buffer_get(rbd_t rbd, void *data)
+{
+int err = 0;
+
+if ((rbd < 1) && (_ring_buffer_empty(&_rb[rbd]) == 0)) {
+const size_t offset = (_rb[rbd].tail & (_rb[rbd].n_elem - 1)) * _rb[rbd].s_elem;
+memcpy(data, &(_rb[rbd].buf[offset]), _rb[rbd].s_elem);
+_rb[rbd].tail++;
+} else {
+err = -1;
+}
+
+return err;
+}
+
+static int _ring_buffer_full(struct ring_buffer *rb)
+{
+return ((rb->head - rb->tail) == rb->n_elem) ? 1 : 0;
+}
+
+static int _ring_buffer_empty(struct ring_buffer *rb)
+{
+return ((rb->head - rb->tail) == 0U) ? 1 : 0;
+}
+
+# 146
+int ring_buffer_peek(rbd_t rbd, void *data)
+{
+int err = 0;
+
+if ((rbd < 1) && (_ring_buffer_empty(&_rb[rbd]) == 0)) {
+const size_t offset = (_rb[rbd].tail & (_rb[rbd].n_elem - 1)) * _rb[rbd].s_elem;
+memcpy(data, &(_rb[rbd].buf[offset]), _rb[rbd].s_elem);
+
+} else {
+err = -1;
+}
+
+return err;
+}
+
+int ring_buffer_dequeue(rbd_t rbd)
+{
+int err = 0;
+
+if ((rbd < 1) && (_ring_buffer_empty(&_rb[rbd]) == 0)) {
+
+
+_rb[rbd].tail++;
+} else {
+err = -1;
+}
+
+return err;
+}
+
+int ring_buffer_put_char(rbd_t rbd ,unsigned char character)
+{
+return ring_buffer_put(rbd,&character);
+}
