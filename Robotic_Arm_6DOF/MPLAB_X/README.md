@@ -1,1 +1,1 @@
-- Contains microcontroller firmware.
+- Contains microcontrollers firmware.
